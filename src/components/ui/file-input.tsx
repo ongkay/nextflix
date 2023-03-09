@@ -149,7 +149,7 @@ const FileInput = forwardRef<HTMLInputElement, InputProps>(
       <form
         onSubmit={(e) => e.preventDefault()}
         onDragEnter={handleDrag}
-        className="flex h-full items-center w-full lg:w-2/3 justify-start"
+        className="flex items-center justify-start w-full h-full lg:w-2/3"
       >
         <label
           htmlFor="dropzone-file"
@@ -216,32 +216,32 @@ const FileInput = forwardRef<HTMLInputElement, InputProps>(
             ) : (
               <div className="flex flex-col w-full h-full">
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                  <div className="align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                    <div className="shadow overflow-hidden sm:rounded-lg">
+                  <div className="inline-block min-w-full align-middle sm:px-6 lg:px-8">
+                    <div className="overflow-hidden shadow sm:rounded-lg">
                       <table className="min-w-full divide-y dark:divide-slate-600">
                         <thead className="bg-slate-800">
                           <tr>
                             <th
                               scope="col"
-                              className="px-6 py-3 text-left text-xs font-medium dark:text-slate-300  uppercase tracking-wider"
+                              className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase dark:text-slate-300"
                             >
                               Preview
                             </th>
                             <th
                               scope="col"
-                              className="px-6 py-3 text-left text-xs font-medium dark:text-slate-300  uppercase tracking-wider"
+                              className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase dark:text-slate-300"
                             >
                               Name
                             </th>
                             <th
                               scope="col"
-                              className="px-6 py-3 text-left text-xs font-medium dark:text-slate-300  uppercase tracking-wider"
+                              className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase dark:text-slate-300"
                             >
                               Size
                             </th>
                             <th
                               scope="col"
-                              className="px-6 py-3 text-left text-xs font-medium dark:text-slate-300  uppercase tracking-wider"
+                              className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase dark:text-slate-300"
                             >
                               Status
                             </th>
@@ -262,9 +262,9 @@ const FileInput = forwardRef<HTMLInputElement, InputProps>(
 
                       <label
                         htmlFor="dropzone-file-images-present"
-                        className="relative cursor-pointer group hover:border-gray-500 hover:dark:bg-slate-800 transition flex justify-center py-4 border-t border-slate-600"
+                        className="relative flex justify-center py-4 transition border-t cursor-pointer group hover:border-gray-500 hover:dark:bg-slate-800 border-slate-600"
                       >
-                        <Icons.plus className="group-hover:fill-slate-400 transition stroke-1 w-12 h-12 fill-slate-500" />
+                        <Icons.plus className="w-12 h-12 transition stroke-1 group-hover:fill-slate-400 fill-slate-500" />
                         <input
                           {...props}
                           ref={ref}

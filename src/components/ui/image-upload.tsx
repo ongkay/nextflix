@@ -30,11 +30,11 @@ const ImageUpload = forwardRef<HTMLTableRowElement, ImageUploadProps>(
 
     return (
       <tr ref={ref} {...props} className={cn('', className)}>
-        <td className="px-6 py-4 whitespace-nowrap text-sm dark:text-slate-400">
-          <div className="relative flex h-12 w-20">
+        <td className="px-6 py-4 text-sm whitespace-nowrap dark:text-slate-400">
+          <div className="relative flex w-20 h-12">
             {error ? (
-              <div className="flex w-full justify-center items-center">
-                <Icons.redx className="h-6 w-6" />
+              <div className="flex items-center justify-center w-full">
+                <Icons.redx className="w-6 h-6" />
               </div>
             ) : (
               <Image
@@ -46,7 +46,7 @@ const ImageUpload = forwardRef<HTMLTableRowElement, ImageUploadProps>(
             )}
           </div>
         </td>
-        <td className="px-6 py-4 truncate whitespace-normal text-sm font-medium dark:text-slate-400 ">
+        <td className="px-6 py-4 text-sm font-medium truncate whitespace-normal dark:text-slate-400 ">
           <div className="">
             <p
               className={cn('dark:text-slate-300', {
@@ -58,7 +58,7 @@ const ImageUpload = forwardRef<HTMLTableRowElement, ImageUploadProps>(
             {data ? (
               <p>{data.alt}</p>
             ) : isLoading ? (
-              <Loader2 className="mt-1 w-4 h-4 animate-spin" />
+              <Loader2 className="w-4 h-4 mt-1 animate-spin" />
             ) : null}
           </div>
         </td>
@@ -72,7 +72,7 @@ const ImageUpload = forwardRef<HTMLTableRowElement, ImageUploadProps>(
         >
           {(size / 1000).toFixed(0)} KB
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm dark:text-slate-400 ">
+        <td className="px-6 py-4 text-sm whitespace-nowrap dark:text-slate-400 ">
           <Progress
             className={cn('w-full h-2')}
             value={progress}

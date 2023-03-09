@@ -9,6 +9,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import Spinner from '../components/ui/spinner'
+import { Switch } from '../components/ui/switch'
 
 export const metadata = {
   title: 'ImageToAlt - Home',
@@ -34,11 +36,8 @@ const page: FC = () => {
       <Tooltip>
         <TooltipTrigger asChild>
           <div className="w-fit">
-            <Button
-              disabled
-              className={buttonVariants({ size: 'lg', className: 'w-fit' })}
-            >
-              Download as CSV
+            <Button className="w-fit bg-slate-800" size={'lg'} variant={'link'}>
+              Download as CSVr
             </Button>
           </div>
         </TooltipTrigger>
@@ -47,9 +46,12 @@ const page: FC = () => {
         </TooltipContent>
       </Tooltip>
 
+      <Switch className="dark:data-[state=checked]:bg-blue-400" />
+      <Spinner />
+
       {/* Legal disclaimers */}
       <div className="flex flex-col gap-4 mt-12">
-        <p className="text-slate-400 text-sm">
+        <p className="text-sm text-slate-400">
           All images are used solely for alt-generation and are automatically
           deleted after 24h.
         </p>
