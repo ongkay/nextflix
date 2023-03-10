@@ -2,7 +2,6 @@
 
 import { FC } from 'react'
 import { Button, buttonVariants } from '@/ui/button'
-import { FileInput } from '@/ui/file-input'
 
 import {
   Tooltip,
@@ -28,9 +27,6 @@ const page: FC = () => {
           Bulk-generate SEO-optimized alt-descriptions that you can copy and
           paste into your app. Free & open-source.
         </p>
-      </div>
-      <div className="flex gap-4">
-        <FileInput />
       </div>
 
       <Tooltip>
