@@ -30,7 +30,7 @@ export function SiteHeader() {
               </div>
             </Link>
             <Link
-              href={siteConfig.links.youtube}
+              href={siteConfig.links.twitter}
               target="_blank"
               rel="noreferrer"
             >
@@ -38,11 +38,11 @@ export function SiteHeader() {
                 className={buttonVariants({
                   size: 'sm',
                   variant: 'ghost',
-                  className: '',
+                  className: 'text-slate-700 dark:text-slate-400',
                 })}
               >
-                <Icons.youtube className="w-6 h-6" />
-                <span className="sr-only">YouTube</span>
+                <Icons.twitter className="w-5 h-5 fill-current" />
+                <span className="sr-only">Twitter</span>
               </div>
             </Link>
             <ThemeToggle />

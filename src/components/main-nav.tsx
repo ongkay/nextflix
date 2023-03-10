@@ -4,7 +4,7 @@ import { NavItem } from '@/src/types/nav'
 import { siteConfig } from '@/config/site'
 import { cn } from '@/lib/utils'
 import { Icons } from '@/components/icons'
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -37,7 +37,13 @@ export function MainNav({ items }: MainNavProps) {
                   href={item.href}
                   className={cn(
                     'flex items-center text-lg font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-100 sm:text-sm',
-                    item.disabled && 'cursor-not-allowed opacity-80'
+                    item.disabled && 'cursor-not-allowed opacity-80',
+                    buttonVariants({
+                      size: 'sm',
+                      variant: 'ghost',
+                      className:
+                        'outline-none ring-0 focus:ring-0 focus:ring-offset-0',
+                    })
                   )}
                 >
                   {item.title}
@@ -46,6 +52,7 @@ export function MainNav({ items }: MainNavProps) {
           )}
         </nav>
       ) : null}
+
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button

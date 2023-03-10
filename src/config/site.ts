@@ -5,22 +5,29 @@ interface SiteConfig {
   description: string
   mainNav: NavItem[]
   links: {
-    youtube: string
+    twitter: string
     github: string
+    docs: string
   }
 }
 
 export const siteConfig: SiteConfig = {
-  name: 'ImageToAlt',
-  description: 'Easily create alt-descriptions for your images.',
+  name: "Next.js",
+  description:
+    "Beautifully designed components built with Radix UI and Tailwind CSS.",
   mainNav: [
     {
-      title: 'Home',
-      href: '/',
+      title: "Home",
+      href: "/",
+    },
+    {
+      title: "Profile",
+      href: "/terms",
     },
   ],
   links: {
-    github: 'https://github.com/joschan21/image-alt-generator',
-    youtube: 'https://www.youtube.com/@joshtriedcoding',
+    twitter: "https://twitter.com/shadcn",
+    github: "https://github.com/shadcn/ui",
+    docs: "https://ui.shadcn.com",
   },
 }
