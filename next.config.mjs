@@ -5,13 +5,24 @@ const nextConfig = {
     appDir: true,
     fontLoaders: [
       {
-        loader: "@next/font/google",
-        options: { subsets: ["latin"] },
+        loader: '@next/font/google',
+        options: { subsets: ['latin'] },
       },
     ],
   },
+
+  // images: {
+  //   domains: [""],
+  // },
+
+  // allaw all images
   images: {
-    domains: ["image-to-alt.s3.eu-central-1.amazonaws.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
 }
 
