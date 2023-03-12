@@ -3,29 +3,15 @@
 import { ReactNode } from 'react'
 import Link from 'next/link'
 import {
-  Album,
-  CreditCard,
-  Globe,
-  Keyboard,
   LayoutGrid,
   Library,
   ListMusic,
-  LogOut,
-  Mail,
-  MessageSquare,
-  Mic,
   Mic2,
   Music,
   Music2,
   PlayCircle,
-  Plus,
-  PlusCircle,
-  Podcast,
   Radio,
-  Settings,
   User,
-  UserPlus,
-  Users,
 } from 'lucide-react'
 
 import { siteConfig } from '@/config/site'
@@ -45,28 +31,43 @@ const playlists = [
   'Bedtime Beats',
   'Feeling Happy',
   'I miss Y2K Pop',
-  'Runtober',
-  'Mellow Days',
-  'Eminem Essentials',
-  'Recently Added',
-  'Recently Played',
-  'Top Songs',
-  'Top Albums',
-  'Top Artists',
-  'Logic Discography',
-  'Bedtime Beats',
-  'Feeling Happy',
-  'I miss Y2K Pop',
-  'Runtober',
-  'Mellow Days',
-  'Eminem Essentials',
 ]
+
+const menuBar = {
+  menuOne: [
+    {
+      title: 'Recently Added',
+      href: '/',
+      icon: ListMusic,
+    },
+    {
+      title: 'Recently Played',
+      href: '/',
+      icon: ListMusic,
+    },
+    {
+      title: 'Top Songs',
+      href: '/',
+      icon: ListMusic,
+    },
+    {
+      title: 'Top Albums',
+      href: '/',
+      icon: ListMusic,
+    },
+    {
+      title: 'Logic Discography',
+      href: '/',
+      icon: ListMusic,
+    },
+  ],
+}
 
 interface Prop {
   children: ReactNode
 }
 
-export function SiteHeader({ children }: Prop) {
+export function SideBar({ children }: Prop) {
   return (
     <div className="px-5 py-3">
       <div className="grid grid-cols-4 xl:grid-cols-6 ">
@@ -162,14 +163,15 @@ export function SiteHeader({ children }: Prop) {
               </h2>
               <ScrollArea className="h-[300px] px-4 ">
                 <div className="p-2 space-y-1">
-                  {playlists.map((playlist) => (
+                  {menuBar.menuOne.map((item, index) => (
                     <Button
                       variant="ghost"
                       size="sm"
                       className="justify-start w-full font-normal"
+                      key={index}
                     >
-                      <ListMusic className="w-4 h-4 mr-2" />
-                      {playlist}
+                      <item.icon className="w-4 h-4 mr-2" />
+                      {item.title}
                     </Button>
                   ))}
                 </div>

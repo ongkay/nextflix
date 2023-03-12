@@ -8,6 +8,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import { AppleMusicDemo } from '../components/music-demo'
 import Spinner from '../components/ui/spinner'
 import { Switch } from '../components/ui/switch'
 
@@ -17,56 +18,9 @@ export const metadata = {
 
 const page: FC = () => {
   return (
-    <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
-      <div className="flex max-w-[980px] flex-col items-start gap-2">
-        <h1 className="text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
-          Easily create alt-descriptions <br className="hidden sm:inline" />
-          for your images.
-        </h1>
-        <p className="max-w-[700px] text-lg text-slate-700 dark:text-slate-400 sm:text-xl">
-          Bulk-generate SEO-optimized alt-descriptions that you can copy and
-          paste into your app. Free & open-source.
-        </p>
-      </div>
-
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <div className="w-fit">
-            <Button className="w-fit bg-slate-800" size={'lg'} variant={'link'}>
-              Download as CSVr
-            </Button>
-          </div>
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>Available soon</p>
-        </TooltipContent>
-      </Tooltip>
-
-      <Switch className="dark:data-[state=checked]:bg-blue-400" />
-      <Spinner />
-
-      {/* Legal disclaimers */}
-      <div className="flex flex-col gap-4 mt-12">
-        <p className="text-sm text-slate-400">
-          All images are used solely for alt-generation and are automatically
-          deleted after 24h.
-        </p>
-        <div className="flex items-center gap-4">
-          <Button
-            href="/terms"
-            className={buttonVariants({ variant: 'link', size: 'sm' })}
-          >
-            Terms
-          </Button>
-          <Button
-            href="/privacy-policy"
-            className={buttonVariants({ variant: 'link', size: 'sm' })}
-          >
-            Privacy Policy
-          </Button>
-        </div>
-      </div>
-    </section>
+    // <section className="container">
+    <AppleMusicDemo />
+    // </section>
   )
 }
 

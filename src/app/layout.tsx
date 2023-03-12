@@ -5,6 +5,7 @@ import { Toaster } from '@/ui/toaster'
 
 import { cn } from '@/lib/utils'
 import Providers from '@/components/providers'
+import { SideBar } from '../components/SideBar'
 import { SiteHeader } from '../components/site-header'
 import { TooltipProvider } from '../components/ui/tooltip'
 
@@ -30,10 +31,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <body className="min-h-screen font-sans antialiased bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-50">
           <Providers>
             <Toaster />
-            <SiteHeader />
-            <TooltipProvider>
-              <main>{children}</main>
-            </TooltipProvider>
+            <SideBar>
+              {/* <main>{children}</main> */}
+              {children}
+            </SideBar>
           </Providers>
         </body>
       </html>
