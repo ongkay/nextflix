@@ -23,12 +23,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <>
       <html
         lang="en"
-        className={cn(
-          'dark bg-white font-sans text-slate-900 antialiased',
-          fontSans.variable
-        )}
+        suppressHydrationWarning
+        // className={cn(
+        //   'dark bg-white font-sans text-slate-900 antialiased',
+        //   fontSans.variable
+        // )}
       >
-        <body className="min-h-screen font-sans antialiased bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-50">
+        <body
+          className={cn(
+            'min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50',
+            fontSans.variable
+          )}
+        >
           <Providers>
             <Toaster />
             <SideBar>

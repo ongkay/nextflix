@@ -1,27 +1,21 @@
-'use client'
+// 'use client'
 
-import { FC } from 'react'
-import { Button, buttonVariants } from '@/ui/button'
+import CartMovieList from '../components/CardMovieList'
+import { getMoviesPopular, getMoviesTrending } from '../lib/getData'
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
-import { AppleMusicDemo } from '../components/music-demo'
-import Spinner from '../components/ui/spinner'
-import { Switch } from '../components/ui/switch'
+export default async function HomePage() {
+  const getDataMovies: Promise<Movies> = getMoviesPopular()
+  const getDataTv: Promise<Movies> = getMoviesTrending()
+  // const data = await getDataMovies
 
-export const metadata = {
-  title: 'ImageToAlt - Home',
-}
+  const [dataMovies, dataTvs] = await Promise.all([getDataMovies, getDataTv])
+  // const data = [...dataMovies.results, ...dataTvs.results]
+  // console.log(data)
 
-const page: FC = () => {
   return (
-    // <section className="container">
-    <AppleMusicDemo />
-    // </section>
+    <section className="">
+      {/* <CartMovieList movies={data} /> */}
+      <CartMovieList movies={dataMovies.results} tv={dataTvs.results} />
+    </section>
   )
 }
-
-export default page

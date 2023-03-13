@@ -1,3 +1,5 @@
+// 'use client'
+
 import * as React from 'react'
 import Image from 'next/image'
 import {
@@ -117,59 +119,15 @@ const listenNowAlbums: Album[] = [
   },
 ]
 
-const madeForYouAlbums: Album[] = [
-  {
-    name: 'Async Awakenings',
-    artist: 'Nina Netcode',
-    cover:
-      'https://images.unsplash.com/photo-1580428180098-24b353d7e9d9?w=300&dpr=2&q=80',
-  },
-  {
-    name: 'Stateful Symphony',
-    artist: 'Beth Binary',
-    cover:
-      'https://images.unsplash.com/photo-1606542758304-820b04394ac2?w=300&dpr=2&q=80',
-  },
-  {
-    name: 'Stateful Symphony',
-    artist: 'Beth Binary',
-    cover:
-      'https://images.unsplash.com/photo-1598062548091-a6fb6a052562?w=300&dpr=2&q=80',
-  },
-  {
-    name: 'The Art of Reusability',
-    artist: 'Lena Logic',
-    cover:
-      'https://images.unsplash.com/photo-1626759486966-c067e3f79982?w=300&dpr=2&q=80',
-  },
-  {
-    name: 'Thinking Components',
-    artist: 'Lena Logic',
-    cover:
-      'https://images.unsplash.com/photo-1576075796033-848c2a5f3696?w=300&dpr=2&q=80',
-  },
-  {
-    name: 'Functional Fury',
-    artist: 'Beth Binary',
-    cover:
-      'https://images.unsplash.com/photo-1606542758304-820b04394ac2?w=300&dpr=2&q=80',
-  },
-  {
-    name: 'React Rendezvous',
-    artist: 'Ethan Byte',
-    cover:
-      'https://images.unsplash.com/photo-1598295893369-1918ffaf89a2?w=300&dpr=2&q=80',
-  },
-]
-
 export function AppleMusicDemo() {
   return (
     <div className="h-full px-8 py-6">
       <Tabs defaultValue="music" className="h-full space-y-6">
+        {/* tab List */}
         <div className="flex items-center space-between">
           <TabsList>
             <TabsTrigger value="music" className="relative">
-              Music <DemoIndicator className="right-2" />
+              Music
             </TabsTrigger>
             <TabsTrigger value="podcasts">Podcasts</TabsTrigger>
             <TabsTrigger value="live" disabled>
@@ -192,7 +150,6 @@ export function AppleMusicDemo() {
                   />
                   <AvatarFallback>SC</AvatarFallback>
                 </Avatar>
-                <DemoIndicator className="top-0 right-0" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56" align="end" forceMount>
@@ -259,6 +216,7 @@ export function AppleMusicDemo() {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
+        {/* menu pertama */}
         <TabsContent value="music" className="p-0 border-none">
           <div className="flex items-center justify-between">
             <div className="space-y-1">
@@ -272,43 +230,18 @@ export function AppleMusicDemo() {
           </div>
           <Separator className="my-4" />
           <div className="relative">
-            <DemoIndicator className="right-auto z-30 left-24 top-32" />
-            <div className="relative flex space-x-4">
+            <div className="relative flex space-x-4 ">
               {listenNowAlbums.map((album) => (
                 <AlbumArtwork
                   key={album.name}
                   album={album}
-                  className="w-[250px]"
+                  className="w-[250px] border-4 border-slate-400"
                 />
               ))}
             </div>
           </div>
-          <div className="mt-6 space-y-1">
-            <h2 className="text-2xl font-semibold tracking-tight">
-              Made for You
-            </h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
-              Your personal playlists. Updated daily.
-            </p>
-          </div>
-          <Separator className="my-4" />
-          <div className="relative">
-            <DemoIndicator className="right-auto z-30 top-32 left-16" />
-            <ScrollArea>
-              <div className="flex pb-4 space-x-4">
-                {madeForYouAlbums.map((album) => (
-                  <AlbumArtwork
-                    key={album.name}
-                    album={album}
-                    className="w-[150px]"
-                    aspectRatio={1 / 1}
-                  />
-                ))}
-              </div>
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
-          </div>
         </TabsContent>
+        {/* menu kedua ada di sini */}
         <TabsContent
           value="podcasts"
           className="h-full flex-col border-none p-0 data-[state=active]:flex"
@@ -324,46 +257,6 @@ export function AppleMusicDemo() {
             </div>
           </div>
           <Separator className="my-4" />
-          <div className="flex h-[450px] shrink-0 items-center justify-center rounded-md border border-dashed border-slate-200 dark:border-slate-700">
-            <div className="mx-auto flex max-w-[420px] flex-col items-center justify-center text-center">
-              <Podcast className="w-10 h-10 text-slate-400" />
-              <h3 className="mt-4 text-lg font-semibold text-slate-900 dark:text-slate-50">
-                No episodes added
-              </h3>
-              <p className="mt-2 mb-4 text-sm text-slate-500 dark:text-slate-400">
-                You have not added any podcasts. Add one below.
-              </p>
-              <Dialog>
-                <DialogTrigger>
-                  <Button size="sm" className="relative">
-                    <Plus className="w-4 h-4 mr-2" />
-                    Add Podcast
-                    <DemoIndicator className="z-30 -top-1 -right-1" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Add Podcast</DialogTitle>
-                    <DialogDescription>
-                      Copy and paste the podcast feed URL to import.
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="grid gap-4 py-4">
-                    <div className="grid gap-2">
-                      <Label htmlFor="url">Podcast URL</Label>
-                      <Input
-                        id="url"
-                        placeholder="https://example.com/feed.xml"
-                      />
-                    </div>
-                  </div>
-                  <DialogFooter>
-                    <Button>Import Podcast</Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
-            </div>
-          </div>
         </TabsContent>
       </Tabs>
     </div>
@@ -383,7 +276,7 @@ function AlbumArtwork({
 }: AlbumArtworkProps) {
   return (
     <div className={cn('space-y-3', className)} {...props}>
-      <ContextMenu>
+      {/* <ContextMenu>
         <ContextMenuTrigger>
           <AspectRatio
             ratio={aspectRatio}
@@ -422,7 +315,15 @@ function AlbumArtwork({
           <ContextMenuItem>Like</ContextMenuItem>
           <ContextMenuItem>Share</ContextMenuItem>
         </ContextMenuContent>
-      </ContextMenu>
+      </ContextMenu> */}
+      <AspectRatio ratio={aspectRatio} className="overflow-hidden rounded-md">
+        <Image
+          src={album.cover}
+          alt={album.name}
+          fill
+          className="object-cover transition-all hover:scale-105"
+        />
+      </AspectRatio>
       <div className="space-y-1 text-sm">
         <h3 className="font-medium leading-none">{album.name}</h3>
         <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -430,21 +331,5 @@ function AlbumArtwork({
         </p>
       </div>
     </div>
-  )
-}
-
-interface DemoIndicatorProps extends React.HTMLAttributes<HTMLSpanElement> {}
-
-export function DemoIndicator({ className }: DemoIndicatorProps) {
-  return (
-    <span
-      className={cn(
-        'absolute top-1 right-0 flex h-5 w-5 animate-bounce items-center justify-center',
-        className
-      )}
-    >
-      <span className="absolute inline-flex w-full h-full rounded-full opacity-75 animate-ping bg-sky-400" />
-      <span className="relative inline-flex w-3 h-3 rounded-full bg-sky-500" />
-    </span>
   )
 }
