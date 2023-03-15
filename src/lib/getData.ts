@@ -1,4 +1,4 @@
-import { apiMovie, apiTv } from '@/config/apiTmdb'
+import { apiMovie, apiTv, endPointURL, endPointURLVideo } from '@/config/apiTmdb'
 
 export const getMoviesPopular = async () => {
   const res = await fetch(apiMovie.popular, { next: { revalidate: 60 } })
@@ -75,3 +75,12 @@ export const getTvUpcoming = async () => {
 }
 
 
+// getMovie ID
+
+export const getMovieById = async (movieId: string) => {
+  const res = await fetch(endPointURLVideo(`/movie/${movieId}`), { next: { revalidate: 60 } })
+
+  if (!res.ok) undefined
+
+  return res.json()
+}

@@ -6,7 +6,8 @@ const apiTmdb = {
 }
 
 
-const endPointURL = (endpoints: string) => apiTmdb.baseUrl + endpoints + apiTmdb.apiKey
+export const endPointURL = (endpoints: string) => apiTmdb.baseUrl + endpoints + apiTmdb.apiKey
+export const endPointURLVideo = (endpoints: string) => apiTmdb.baseUrl + endpoints + apiTmdb.apiKey + "&append_to_response=videos"
 
 export const apiMovie = {
   trending: endPointURL('/trending/movie/day'),

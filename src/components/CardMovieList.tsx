@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import apiTmdb from '../config/apiTmdb'
-import { imageBlur } from '../lib/imageBlur'
 import { AspectRatio } from './ui/aspect-ratio'
 
 type Props = {
@@ -35,8 +34,8 @@ export default function CardMovieList({ movies, tv }: Props) {
                     alt={movie.original_title}
                     // fill
                     className="object-cover transition-all hover:scale-105 hover:opacity-50"
-                    placeholder="blur"
-                    blurDataURL={imageBlur}
+                    // placeholder="blur"
+                    // blurDataURL={imageBlur}
                     quality={70}
                     width={370}
                     height={520}
