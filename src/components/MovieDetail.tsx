@@ -1,19 +1,11 @@
 'use client'
 
-import React, { useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { AiFillStar } from 'react-icons/ai'
+import { HiArrowSmLeft, HiPlay, HiStar } from 'react-icons/hi'
 import Youtube from 'react-youtube'
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import apiTmdb from '../config/apiTmdb'
 import { AspectRatio } from './ui/aspect-ratio'
 import { Button } from './ui/button'
@@ -72,7 +64,7 @@ export default function MovieDetail1({ data }: Prop) {
               </p>
               <div className="flex flex-row items-center ">
                 <div className="flex flex-row items-center justify-center pb-2 mr-5">
-                  <AiFillStar className="mr-2 text-3xl" />
+                  <HiStar className="mr-2 text-3xl" />
                   <p className="text-4xl ">{data?.vote_average?.toFixed(1)} </p>
                 </div>
                 <div className="flex flex-col">
@@ -99,6 +91,7 @@ export default function MovieDetail1({ data }: Prop) {
               <p className="mb-8 text-gray-300">{data.overview} </p>
               <div className="flex flex-row items-center gap-4">
                 <Button onClick={() => router.back()} variant="outline">
+                  <HiArrowSmLeft className="w-5 h-5 mr-2" />
                   Back to page
                 </Button>
                 <PlayMovie data={data} />
@@ -128,7 +121,10 @@ function PlayMovie({ data }: PropPlayMovie) {
     <div className="">
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="destructive">Play</Button>
+          <Button variant="destructive">
+            <HiPlay className="w-6 h-6 mr-1" />
+            Play
+          </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[850px] p-8 dark:bg-transparent bg-transparent">
           <AspectRatio

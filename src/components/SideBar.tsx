@@ -1,12 +1,12 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import {
   CreditCard,
   Keyboard,
   LayoutGrid,
-  Library,
   ListMusic,
   LogOut,
   Mail,
@@ -23,10 +23,10 @@ import {
   Users,
 } from 'lucide-react'
 
-import { siteConfig } from '@/config/site'
-import { Icons } from '@/components/icons'
-import { MainNav } from '@/components/main-nav'
-import { ThemeToggle } from '@/components/theme-toggle'
+// import { siteConfig } from '@/config/site'
+// import { Icons } from '@/components/icons'
+// import { MainNav } from '@/components/main-nav'
+// import { ThemeToggle } from '@/components/theme-toggle'
 import { Button, buttonVariants } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -43,126 +43,90 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { cn } from '../lib/utils'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
-
-const menuBar = {
-  menuOne: [
-    {
-      title: 'Listen Now',
-      href: '/',
-      icon: PlayCircle,
-    },
-    {
-      title: 'Browse',
-      href: '/',
-      icon: LayoutGrid,
-    },
-    {
-      title: 'Radio',
-      href: '/',
-      icon: Radio,
-    },
-  ],
-  menuTwo: [
-    {
-      title: 'Playlists',
-      href: '/',
-      icon: ListMusic,
-    },
-    {
-      title: 'Songs',
-      href: '/',
-      icon: Music2,
-    },
-    {
-      title: 'Made for You',
-      href: '/',
-      icon: User,
-    },
-    {
-      title: 'Artists',
-      href: '/',
-      icon: Mic2,
-    },
-  ],
-  menuThree: [
-    {
-      title: 'Recently Added',
-      href: '/',
-      icon: ListMusic,
-    },
-    {
-      title: 'Recently Played',
-      href: '/',
-      icon: ListMusic,
-    },
-    {
-      title: 'Top Songs',
-      href: '/',
-      icon: ListMusic,
-    },
-    {
-      title: 'Top Albums',
-      href: '/',
-      icon: ListMusic,
-    },
-    {
-      title: 'Logic Discography',
-      href: '/',
-      icon: ListMusic,
-    },
-  ],
-}
 
 interface Prop {
   children: ReactNode
 }
 
 export function SideBar({ children }: Prop) {
+  const [thisPage, setThisPage] = useState<String | null>(null)
+
   return (
     <div className="grid grid-cols-4 xl:grid-cols-6">
-      <aside className="sticky top-0 self-start h-screen col-span-1 border-r border-r-slate-700">
-        <div className="px-8 py-6 ">
-          <p className="flex items-center text-2xl font-semibold tracking-tight">
-            <Music className="mr-2" />
-            Music
-          </p>
+      <aside className="sticky top-0 self-start h-screen col-span-1 pl-5 border-r border-r-slate-700">
+        <div className="p-8 py-8 ">
+          <Link href="/">
+            <p className="text-lg font-bold text-red-500 md:text-4xl">
+              Nextflix
+            </p>
+          </Link>
         </div>
+
         <div className="space-y-4">
           <div className="px-6 py-2">
             <h2 className="px-2 mb-2 text-lg font-semibold tracking-tight">
               Discover
             </h2>
             <div className="space-y-1">
-              {menuBar.menuOne.map((item, index) => (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="justify-start w-full"
-                  key={index}
-                >
-                  <item.icon className="w-4 h-4 mr-2" />
-                  {item.title}
-                </Button>
-              ))}
+              {Object.values(menuBar)[0].map((item, index) => {
+                const isPath = thisPage === item.path
+                return (
+                  <ul key={index}>
+                    <Link
+                      onClick={() => {
+                        setThisPage(item.path)
+                      }}
+                      href={item.path}
+                      key={index}
+                      className={cn(
+                        buttonVariants({
+                          size: 'sm',
+                          variant: isPath ? 'subtle' : 'ghost',
+                          className:
+                            'justify-start w-full outline-none ring-0 focus:ring-0 focus:ring-offset-0',
+                        })
+                      )}
+                    >
+                      <item.icon className="w-4 h-4 mr-2" />
+                      {item.title}
+                    </Link>
+                  </ul>
+                )
+              })}
             </div>
           </div>
           <div className="px-6 py-2">
             <h2 className="px-2 mb-2 text-lg font-semibold tracking-tight">
-              Library
+              Moviemu
             </h2>
             <div className="space-y-1">
-              {menuBar.menuTwo.map((item, index) => (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="justify-start w-full"
-                  key={index}
-                >
-                  <item.icon className="w-4 h-4 mr-2" />
-                  {item.title}
-                </Button>
-              ))}
+              {Object.values(menuBar)[1].map((item, index) => {
+                const isPath = thisPage === item.path
+                return (
+                  <ul key={index}>
+                    <Link
+                      onClick={() => {
+                        setThisPage(item.path)
+                      }}
+                      href={item.path}
+                      key={index}
+                      className={cn(
+                        buttonVariants({
+                          size: 'sm',
+                          variant: isPath ? 'subtle' : 'ghost',
+                          className:
+                            'justify-start w-full outline-none ring-0 focus:ring-0 focus:ring-offset-0',
+                        })
+                      )}
+                    >
+                      <item.icon className="w-4 h-4 mr-2" />
+                      {item.title}
+                    </Link>
+                  </ul>
+                )
+              })}
             </div>
           </div>
           <div className="py-2">
@@ -171,17 +135,31 @@ export function SideBar({ children }: Prop) {
             </h2>
             <ScrollArea className="h-[300px] px-4 ">
               <div className="p-2 space-y-1">
-                {menuBar.menuThree.map((item, index) => (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="justify-start w-full font-normal"
-                    key={index}
-                  >
-                    <item.icon className="w-4 h-4 mr-2" />
-                    {item.title}
-                  </Button>
-                ))}
+                {Object.values(menuBar)[2].map((item, index) => {
+                  const isPath = thisPage === item.path
+                  return (
+                    <ul key={index}>
+                      <Link
+                        onClick={() => {
+                          setThisPage(item.path)
+                        }}
+                        href={item.path}
+                        key={index}
+                        className={cn(
+                          buttonVariants({
+                            size: 'sm',
+                            variant: isPath ? 'subtle' : 'ghost',
+                            className:
+                              'justify-start w-full outline-none ring-0 focus:ring-0 focus:ring-offset-0',
+                          })
+                        )}
+                      >
+                        <item.icon className="w-4 h-4 mr-2" />
+                        {item.title}
+                      </Link>
+                    </ul>
+                  )
+                })}
               </div>
             </ScrollArea>
           </div>
@@ -195,6 +173,100 @@ export function SideBar({ children }: Prop) {
       </main>
     </div>
   )
+}
+
+const menuBar = {
+  menuOne: [
+    {
+      title: 'Trending Now',
+      path: '/trending',
+      icon: PlayCircle,
+    },
+    {
+      title: 'Best Rate',
+      path: '/rated',
+      icon: LayoutGrid,
+    },
+    {
+      title: 'Radio',
+      path: '/',
+      icon: Radio,
+    },
+  ],
+  menuTwo: [
+    {
+      title: 'Playlists',
+      path: '/',
+      icon: ListMusic,
+    },
+    {
+      title: 'Songs',
+      path: '/',
+      icon: Music2,
+    },
+    {
+      title: 'Made for You',
+      path: '/',
+      icon: User,
+    },
+    {
+      title: 'Artists',
+      path: '/',
+      icon: Mic2,
+    },
+  ],
+  menuThree: [
+    {
+      title: 'Recently Added',
+      path: '/',
+      icon: ListMusic,
+    },
+    {
+      title: 'Recently Played',
+      path: '/',
+      icon: ListMusic,
+    },
+    {
+      title: 'Top Songs',
+      path: '/',
+      icon: ListMusic,
+    },
+    {
+      title: 'Top Albums',
+      path: '/',
+      icon: ListMusic,
+    },
+    {
+      title: 'Logic Discography',
+      path: '/',
+      icon: ListMusic,
+    },
+    {
+      title: 'Recently Added',
+      path: '/',
+      icon: ListMusic,
+    },
+    {
+      title: 'Recently Played',
+      path: '/',
+      icon: ListMusic,
+    },
+    {
+      title: 'Top Songs',
+      path: '/',
+      icon: ListMusic,
+    },
+    {
+      title: 'Top Albums',
+      path: '/',
+      icon: ListMusic,
+    },
+    {
+      title: 'Logic Discography',
+      path: '/',
+      icon: ListMusic,
+    },
+  ],
 }
 
 function ProfileTab() {

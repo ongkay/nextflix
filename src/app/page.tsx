@@ -1,5 +1,3 @@
-// 'use client'
-
 import MovieList from '../components/MovieList'
 import { getMoviesPopular, getMoviesTrending } from '../lib/getData'
 
