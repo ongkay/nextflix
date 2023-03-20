@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 
 import * as React from 'react'
 import Image from 'next/image'
@@ -6,20 +6,18 @@ import Link from 'next/link'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import apiTmdb from '../config/apiTmdb'
+import { MovieListItem } from './MovieListItem'
 import { AspectRatio } from './ui/aspect-ratio'
 
 type Props = {
   movies: MoviesResults[]
   tv?: MoviesResults[]
+  path?: string
 }
 
-export default function MovieList({ movies, tv }: Props) {
-  let clickLinkTo = '#'
-
+export default function MovieList({ movies, tv, path }: Props) {
   return (
     <>
-      {/* <ProfileTab /> */}
-
       <div className="px-10 py-8">
         <Tabs defaultValue="music" className="space-y-6">
           {/* tab List */}
@@ -49,7 +47,7 @@ export default function MovieList({ movies, tv }: Props) {
             </div>
             {/* <Separator className="my-4" /> */}
             <div className="relative">
-              <CardMovieItem data={movies} />
+              <CardMovieItem data={movies} path={path} />
             </div>
           </TabsContent>
           {/* menu kedua ada di sini */}
@@ -69,7 +67,7 @@ export default function MovieList({ movies, tv }: Props) {
             </div>
             {/* <Separator className="my-4" /> */}
             <div className="relative">
-              <CardMovieItem data={tv} />{' '}
+              <CardMovieItem data={tv} path={path} />{' '}
             </div>
           </TabsContent>
         </Tabs>
@@ -80,10 +78,11 @@ export default function MovieList({ movies, tv }: Props) {
 
 type PropCardMovieItem = {
   data?: MoviesResults[]
+  path?: string
 }
 
-function CardMovieItem({ data }: PropCardMovieItem) {
-  let clickLinkTo = 'moviedetail/'
+function CardMovieItem({ data, path = '/moviedetail/' }: PropCardMovieItem) {
+  let clickLinkTo = path
 
   return (
     <ul className="grid grid-cols-2 py-16 pt-10 gap-x-6 gap-y-8 lg:grid-cols-4 xl:grid-cols-5 md:grid-cols-3">
@@ -97,13 +96,12 @@ function CardMovieItem({ data }: PropCardMovieItem) {
             <Link href={`${clickLinkTo}${movie?.id}`}>
               <AspectRatio
                 ratio={3 / 4}
-                className="overflow-hidden rounded-md bg-slate-800"
+                className="overflow-hidden rounded-md bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2"
               >
                 <Image
                   src={image}
                   alt={movie.original_title}
-                  // fill
-                  className="object-cover transition-all hover:scale-105 hover:opacity-50"
+                  className="object-cover transition-all hover:scale-105 hover:opacity-50 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2"
                   quality={70}
                   width={370}
                   height={520}

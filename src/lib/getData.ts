@@ -1,84 +1,36 @@
 import { apiMovie, apiTv, endPointURL, endPointURLVideo } from '@/config/apiTmdb'
 
-export const getMoviesPopular = async () => {
-  const res = await fetch(apiMovie.popular, { next: { revalidate: 60 } })
+export const fetcher = async (url: string, option?: object) => {
+  try {
+    console.log(`fetch --> ${url}`)
 
-  if (!res.ok) undefined
+    const response = option
+      ? await fetch(endPointURL(url), option)
+      : await fetch(endPointURL(url))
 
-  return res.json()
-}
+    if (!response.ok) undefined
 
-export const getMoviesTrending = async () => {
-  const res = await fetch(apiMovie.trending, { next: { revalidate: 60 } })
-
-  if (!res.ok) undefined
-
-  return res.json()
-}
-
-export const getMoviesRated = async () => {
-  const res = await fetch(apiMovie.top_Rated, { next: { revalidate: 60 } })
-
-  if (!res.ok) undefined
-
-  return res.json()
-}
-
-export const getMoviesUpcoming = async () => {
-  const res = await fetch(apiMovie.upcoming, { next: { revalidate: 60 } })
-
-  if (!res.ok) undefined
-
-  return res.json()
-}
-
-export const getMoviesHot = async () => {
-  const res = await fetch(apiMovie.hot, { next: { revalidate: 60 } })
-
-  if (!res.ok) undefined
-
-  return res.json()
+    return response.json()
+  } catch (err) {
+    console.log('fetching Erorrrrrrr gais')
+    console.log(url)
+  }
 }
 
 
-// Get TV
-export const getTvPopular = async () => {
-  const res = await fetch(apiTv.popular, { next: { revalidate: 60 } })
 
-  if (!res.ok) undefined
-
-  return res.json()
+export const getData = {
+  // moviePopular: async () => await fetcher('/movie/popular', { next: { revalidate: 60 } }),
+  moviePopular: async () => await fetcher('/movie/popular'),
+  movieTrending: async () => await fetcher('/trending/movie/day'),
+  movieTop_Rated: async () => await fetcher('/movie/top_rated'),
+  movieUpcoming: async () => await fetcher('/movie/upcoming'),
+  movieHot: async () => await fetcher('/trending/movie/day?page=2'),
 }
-
-export const getTvTrending = async () => {
-  const res = await fetch(apiTv.trending, { next: { revalidate: 60 } })
-
-  if (!res.ok) undefined
-
-  return res.json()
-}
-
-export const getTvRated = async () => {
-  const res = await fetch(apiTv.top_Rated, { next: { revalidate: 60 } })
-
-  if (!res.ok) undefined
-
-  return res.json()
-}
-
-export const getTvUpcoming = async () => {
-  const res = await fetch(apiTv.hot, { next: { revalidate: 60 } })
-
-  if (!res.ok) undefined
-
-  return res.json()
-}
-
-
-// getMovie ID
 
 export const getMovieById = async (movieId: string) => {
-  const res = await fetch(endPointURLVideo(`/movie/${movieId}`), { next: { revalidate: 60 } })
+  console.log(`get Id --> ${movieId}`)
+  const res = await fetch(endPointURLVideo(`/movie/${movieId}`))
 
   if (!res.ok) undefined
 

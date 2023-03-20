@@ -54,88 +54,24 @@ export function SideBar({ children }: Prop) {
   const [thisPage, setThisPage] = useState<String | null>(null)
 
   return (
-    <div className="grid grid-cols-4 xl:grid-cols-6">
-      <aside className="sticky top-0 self-start h-screen col-span-1 pl-5 border-r border-r-slate-700">
-        <div className="p-8 py-8 ">
-          <Link href="/">
-            <p className="text-lg font-bold text-red-500 md:text-4xl">
-              Nextflix
-            </p>
-          </Link>
-        </div>
+    <>
+      <div className="grid grid-cols-4 xl:grid-cols-6">
+        <aside className="sticky top-0 self-start h-screen col-span-1 pl-5 border-r border-r-slate-700">
+          <div className="p-8 py-8 ">
+            <Link href="/">
+              <p className="text-lg font-bold text-red-500 md:text-4xl">
+                Nextflix
+              </p>
+            </Link>
+          </div>
 
-        <div className="space-y-4">
-          <div className="px-6 py-2">
-            <h2 className="px-2 mb-2 text-lg font-semibold tracking-tight">
-              Discover
-            </h2>
-            <div className="space-y-1">
-              {Object.values(menuBar)[0].map((item, index) => {
-                const isPath = thisPage === item.path
-                return (
-                  <ul key={index}>
-                    <Link
-                      onClick={() => {
-                        setThisPage(item.path)
-                      }}
-                      href={item.path}
-                      key={index}
-                      className={cn(
-                        buttonVariants({
-                          size: 'sm',
-                          variant: isPath ? 'subtle' : 'ghost',
-                          className:
-                            'justify-start w-full outline-none ring-0 focus:ring-0 focus:ring-offset-0',
-                        })
-                      )}
-                    >
-                      <item.icon className="w-4 h-4 mr-2" />
-                      {item.title}
-                    </Link>
-                  </ul>
-                )
-              })}
-            </div>
-          </div>
-          <div className="px-6 py-2">
-            <h2 className="px-2 mb-2 text-lg font-semibold tracking-tight">
-              Moviemu
-            </h2>
-            <div className="space-y-1">
-              {Object.values(menuBar)[1].map((item, index) => {
-                const isPath = thisPage === item.path
-                return (
-                  <ul key={index}>
-                    <Link
-                      onClick={() => {
-                        setThisPage(item.path)
-                      }}
-                      href={item.path}
-                      key={index}
-                      className={cn(
-                        buttonVariants({
-                          size: 'sm',
-                          variant: isPath ? 'subtle' : 'ghost',
-                          className:
-                            'justify-start w-full outline-none ring-0 focus:ring-0 focus:ring-offset-0',
-                        })
-                      )}
-                    >
-                      <item.icon className="w-4 h-4 mr-2" />
-                      {item.title}
-                    </Link>
-                  </ul>
-                )
-              })}
-            </div>
-          </div>
-          <div className="py-2">
-            <h2 className="relative px-8 text-lg font-semibold tracking-tight">
-              Playlists
-            </h2>
-            <ScrollArea className="h-[300px] px-4 ">
-              <div className="p-2 space-y-1">
-                {Object.values(menuBar)[2].map((item, index) => {
+          <div className="space-y-4">
+            <div className="px-6 py-2">
+              <h2 className="px-2 mb-2 text-lg font-semibold tracking-tight">
+                Discover
+              </h2>
+              <div className="space-y-1">
+                {Object.values(menuBar)[0].map((item, index) => {
                   const isPath = thisPage === item.path
                   return (
                     <ul key={index}>
@@ -161,17 +97,83 @@ export function SideBar({ children }: Prop) {
                   )
                 })}
               </div>
-            </ScrollArea>
+            </div>
+            <div className="px-6 py-2">
+              <h2 className="px-2 mb-2 text-lg font-semibold tracking-tight">
+                Moviemu
+              </h2>
+              <div className="space-y-1">
+                {Object.values(menuBar)[1].map((item, index) => {
+                  const isPath = thisPage === item.path
+                  return (
+                    <ul key={index}>
+                      <Link
+                        onClick={() => {
+                          setThisPage(item.path)
+                        }}
+                        href={item.path}
+                        key={index}
+                        className={cn(
+                          buttonVariants({
+                            size: 'sm',
+                            variant: isPath ? 'subtle' : 'ghost',
+                            className:
+                              'justify-start w-full outline-none ring-0 focus:ring-0 focus:ring-offset-0',
+                          })
+                        )}
+                      >
+                        <item.icon className="w-4 h-4 mr-2" />
+                        {item.title}
+                      </Link>
+                    </ul>
+                  )
+                })}
+              </div>
+            </div>
+            <div className="py-2">
+              <h2 className="relative px-8 text-lg font-semibold tracking-tight">
+                Playlists
+              </h2>
+              <ScrollArea className="h-[300px] px-4 ">
+                <div className="p-2 space-y-1">
+                  {Object.values(menuBar)[2].map((item, index) => {
+                    const isPath = thisPage === item.path
+                    return (
+                      <ul key={index}>
+                        <Link
+                          onClick={() => {
+                            setThisPage(item.path)
+                          }}
+                          href={item.path}
+                          key={index}
+                          className={cn(
+                            buttonVariants({
+                              size: 'sm',
+                              variant: isPath ? 'subtle' : 'ghost',
+                              className:
+                                'justify-start w-full outline-none ring-0 focus:ring-0 focus:ring-offset-0',
+                            })
+                          )}
+                        >
+                          <item.icon className="w-4 h-4 mr-2" />
+                          {item.title}
+                        </Link>
+                      </ul>
+                    )
+                  })}
+                </div>
+              </ScrollArea>
+            </div>
           </div>
-        </div>
-      </aside>
-      <main className="col-span-3 xl:col-span-5">
-        <>
-          <ProfileTab />
-          {children}
-        </>
-      </main>
-    </div>
+        </aside>
+        <main className="col-span-3 xl:col-span-5">
+          <>
+            <ProfileTab />
+            {children}
+          </>
+        </main>
+      </div>
+    </>
   )
 }
 
@@ -188,8 +190,8 @@ const menuBar = {
       icon: LayoutGrid,
     },
     {
-      title: 'Radio',
-      path: '/',
+      title: 'Sampe Aja',
+      path: '/sample',
       icon: Radio,
     },
   ],

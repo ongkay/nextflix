@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import MovieDetail from '@/src/components/MovieDetail'
 import { getData, getMovieById } from '@/src/lib/getData'
 
-export const revalidate = 600
+export const revalidate = 150
 
 type Params = {
   params: {
@@ -22,11 +22,11 @@ export default async function UserPage({ params: { movieId } }: Params) {
   )
 }
 
-export async function generateStaticParams() {
-  const getAllData: Promise<Movies> = getData.moviePopular()
-  const data = await getAllData
+// export async function generateStaticParams() {
+//   const getAllData: Promise<Movies> = getData.movieTrending()
+//   const data = await getAllData
 
-  return data.results.map((movie) => ({
-    movieId: movie.id.toString(),
-  }))
-}
+//   return data.results.map((movie) => ({
+//     movieId: movie.id.toString(),
+//   }))
+// }

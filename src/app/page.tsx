@@ -1,9 +1,11 @@
 import MovieList from '../components/MovieList'
-import { getMoviesPopular, getMoviesTrending } from '../lib/getData'
+import { getData } from '../lib/getData'
+
+export const revalidate = 60
 
 export default async function HomePage() {
-  const getDataMovies: Promise<Movies> = getMoviesPopular()
-  const getDataTv: Promise<Movies> = getMoviesTrending()
+  const getDataMovies: Promise<Movies> = getData.moviePopular()
+  const getDataTv: Promise<Movies> = getData.movieTrending()
   // const data = await getDataMovies
 
   const [dataMovies, dataTvs] = await Promise.all([getDataMovies, getDataTv])

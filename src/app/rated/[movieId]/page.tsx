@@ -1,8 +1,7 @@
+// 'use client'
 import { notFound } from 'next/navigation'
 import MovieDetail from '@/src/components/MovieDetail'
 import { getData, getMovieById } from '@/src/lib/getData'
-
-export const revalidate = 600
 
 type Params = {
   params: {
@@ -23,7 +22,7 @@ export default async function UserPage({ params: { movieId } }: Params) {
 }
 
 export async function generateStaticParams() {
-  const getAllData: Promise<Movies> = getData.moviePopular()
+  const getAllData: Promise<Movies> = getData.movieTop_Rated()
   const data = await getAllData
 
   return data.results.map((movie) => ({

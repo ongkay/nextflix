@@ -1,6 +1,8 @@
+// 'use client'
+
 import Spinner from '@/src/components/ui/spinner'
 
-export default function Loading() {
+export default function LoadingPage() {
   return (
     <>
       <div className="flex items-center justify-center h-screen mb-4">

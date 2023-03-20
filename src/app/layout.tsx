@@ -21,14 +21,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
-      <html
-        lang="en"
-        suppressHydrationWarning
-        // className={cn(
-        //   'dark bg-white font-sans text-slate-900 antialiased',
-        //   fontSans.variable
-        // )}
-      >
+      <html lang="en" suppressHydrationWarning>
         <body
           className={cn(
             'min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50',
