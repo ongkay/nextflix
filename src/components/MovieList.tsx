@@ -47,7 +47,11 @@ export default function MovieList({ movies, tv, path }: Props) {
             </div>
             {/* <Separator className="my-4" /> */}
             <div className="relative">
-              <CardMovieItem data={movies} path={path} />
+              <ul className="grid grid-cols-2 py-16 pt-10 gap-x-6 gap-y-8 lg:grid-cols-4 xl:grid-cols-5 md:grid-cols-3">
+                {movies?.map((movie) => (
+                  <CardMovieList data={movie} key={movie.id} />
+                ))}
+              </ul>
             </div>
           </TabsContent>
           {/* menu kedua ada di sini */}
@@ -67,7 +71,11 @@ export default function MovieList({ movies, tv, path }: Props) {
             </div>
             {/* <Separator className="my-4" /> */}
             <div className="relative">
-              <CardMovieItem data={tv} path={path} />{' '}
+              <ul className="grid grid-cols-2 py-16 pt-10 gap-x-6 gap-y-8 lg:grid-cols-4 xl:grid-cols-5 md:grid-cols-3">
+                {movies?.map((movie) => (
+                  <CardMovieList data={movie} key={movie.id} />
+                ))}
+              </ul>
             </div>
           </TabsContent>
         </Tabs>
@@ -78,47 +86,38 @@ export default function MovieList({ movies, tv, path }: Props) {
 
 type PropCardMovieItem = {
   data?: MoviesResults[]
-  path?: string
 }
 
-function CardMovieItem({ data, path = '/moviedetail/' }: PropCardMovieItem) {
-  let clickLinkTo = path
+function CardMovieList({ data }: { data: MoviesResults }) {
+  const image = data?.poster_path
+    ? apiTmdb.w500Image(data.poster_path)
+    : 'https://raw.githubusercontent.com/CodingByGopal/React-MovieNuggets/master/src/images/male.png'
 
   return (
-    <ul className="grid grid-cols-2 py-16 pt-10 gap-x-6 gap-y-8 lg:grid-cols-4 xl:grid-cols-5 md:grid-cols-3">
-      {data?.map((movie) => {
-        const image = movie?.poster_path
-          ? apiTmdb.w500Image(movie.poster_path)
-          : 'https://raw.githubusercontent.com/CodingByGopal/React-MovieNuggets/master/src/images/male.png'
-
-        return (
-          <li key={movie.id}>
-            <Link href={`${clickLinkTo}${movie?.id}`}>
-              <AspectRatio
-                ratio={3 / 4}
-                className="overflow-hidden rounded-md bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2"
-              >
-                <Image
-                  src={image}
-                  alt={movie.original_title}
-                  className="object-cover transition-all hover:scale-105 hover:opacity-50 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2"
-                  quality={70}
-                  width={370}
-                  height={520}
-                />
-              </AspectRatio>
-              <div className="mt-3 space-y-1 text-sm">
-                <h3 className="font-medium leading-none truncate">
-                  {movie.original_title}
-                </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
-                  {movie.release_date}
-                </p>
-              </div>
-            </Link>
-          </li>
-        )
-      })}
-    </ul>
+    <li key={data.id}>
+      <Link href={`/moviedetail/${data?.id}`}>
+        <AspectRatio
+          ratio={3 / 4}
+          className="overflow-hidden rounded-md bg-slate-800 "
+        >
+          <Image
+            src={image}
+            alt={data.original_title}
+            className="object-cover transition-all hover:scale-105 hover:opacity-50 "
+            quality={70}
+            width={370}
+            height={520}
+          />
+        </AspectRatio>
+        <div className="mt-3 space-y-1 text-sm">
+          <h3 className="font-medium leading-none truncate">
+            {data.original_title}
+          </h3>
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            {data.release_date}
+          </p>
+        </div>
+      </Link>
+    </li>
   )
 }

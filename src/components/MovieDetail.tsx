@@ -1,7 +1,7 @@
 // 'use client'
 
 import Image from 'next/image'
-import { HiArrowSmLeft, HiPlay, HiStar } from 'react-icons/hi'
+import { HiStar } from 'react-icons/hi'
 
 import { PlayMovie } from './PlayMovie'
 import { AspectRatio } from './ui/aspect-ratio'
